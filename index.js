@@ -21,6 +21,28 @@ app.get('/health', (req, res) => {
   res.send('Server is running');
 });
 
+
+
+app.get('/mysql-health', (req, res) => {
+  // Get a connection from the pool
+  db.getConnection((err, connection) => {
+    if (err) {
+      // If there's an error connecting to the DB, respond with an error
+      return res.status(500).send('MySQL Database is down!');
+    }
+
+    // If connection was successful, release the connection back to the pool
+    connection.release();
+
+    // Respond with success if the connection was successful
+    res.status(200).send('MySQL Database is up and running!');
+  });
+});
+
+
+
+
+
 // Fetch all projects along with their images
 app.get('/projects', (req, res) => {
   const query = `
