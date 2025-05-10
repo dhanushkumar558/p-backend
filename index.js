@@ -17,7 +17,9 @@ const db = mysql.createPool({
 });
 
 
-
+app.get('/health', (req, res) => {
+  res.send('Server is running');
+});
 
 // Fetch all projects along with their images
 app.get('/projects', (req, res) => {
