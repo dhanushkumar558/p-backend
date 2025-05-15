@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 const db = mysql.createPool({
-  connectionLimit: 2, // 🔻 Safer for Fiess limits
+  connectionLimit: 5, // 🔻 Safer for Fiess limits
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
