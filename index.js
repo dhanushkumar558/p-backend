@@ -100,6 +100,17 @@ app.get('/education', (req, res) => {
   });
 });
 
+
+// Fetch internship data
+app.get('/internships', (req, res) => {
+  const sql = 'SELECT * FROM internships ORDER BY start_date DESC';
+  db.query(sql, (err, results) => {
+    if (err) return res.status(500).json({ error: err });
+    res.json(results);
+  });
+});
+
+
 // Contact form submission endpoint
 app.post('/contact', (req, res) => {
   const { name, email, message } = req.body;
